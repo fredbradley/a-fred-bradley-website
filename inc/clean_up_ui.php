@@ -75,7 +75,7 @@ function add_favicon() {
 	if (@file_get_contents(get_bloginfo('template_url').'/images/icons/favicon.png')) {
 		$favicon_url = get_bloginfo('template_url').'/images/icons/favicon.png';
 	} else {
-		$favicon_url = plugins_url('websiteby.png', __DIR__);
+		$favicon_url = plugins_url('images/websiteby.png', __DIR__);
 	}
 	echo '<link rel="shortcut icon" href="' . $favicon_url . '" />';
 }
