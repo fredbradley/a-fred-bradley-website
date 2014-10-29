@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: Website By Fred Bradley
-Plugin URI: http://www.fredbradley.co.uk/
+Plugin URI: https://github.com/fredbradley/a-fred-bradley-website
 Description: Comes with every Fred Bradley Wordpress Installation.  
 Version: 1.1
 Author: Fred Bradley
 Author URI: http://www.fredbradley.co.uk/
-License: GPL
+License: MIT
 Copyright: Fred Bradley
 */
 
@@ -26,10 +26,6 @@ function socialcount_scripts_and_styles() {
 
 function fb_helper_setup() {
 
-	// Filter our themeblvd_time_ago() function into WP's the_time() function
-	
-	add_filter('the_time', 'themeblvd_time_ago');
-	add_filter('the_modified_date', 'themeblvd_time_ago');
 	
 	require_once('inc/clean_up_ui.php');
 	
