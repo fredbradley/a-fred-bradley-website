@@ -29,7 +29,7 @@ class WeDevs_Settings_API_Test {
     }
 
     function admin_menu() {
-        add_menu_page( 'Website Options', 'Website Options', 'edit_theme_options', 'jack_options_page', array($this, 'plugin_page'), plugins_url('/images/websiteby.png', dirname(__FILE__)) );
+        add_menu_page( 'Website Options', 'Website Options', 'edit_theme_options', 'fred_bradley_website_options_page', array($this, 'plugin_page'), plugins_url('/images/websiteby.png', dirname(__FILE__)) );
     }
   
     
@@ -39,6 +39,10 @@ class WeDevs_Settings_API_Test {
         	array(
         		'id' => 'site_global_options',
         		'title' => __("Site Options", "jack"),
+        	),
+        	array(
+        		'id' => 'fred_developer_options',
+        		'title' => __("Developer Options", "fredbradley")
         	),
         	        	
             /*array(
@@ -74,6 +78,13 @@ class WeDevs_Settings_API_Test {
      */
     function get_settings_fields() {
         $settings_fields = array(
+        	'fred_developer_options' => array(
+        		array(
+        			'name' => 'debug_mode',
+        			'label' => 'Debug Mode',
+        			'type' => 'checkbox'
+        		)
+        	),
         	'site_global_options' => array(
         		array(
                     'name' => 'site_logo',

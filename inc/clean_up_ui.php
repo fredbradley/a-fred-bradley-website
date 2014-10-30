@@ -58,7 +58,7 @@ function my_custom_login_logo() {
 	if (@file_get_contents(get_bloginfo('template_url').'/images/login_page_logo.png')) {
 		$login_logo = get_bloginfo('template_url').'/images/login_page_logo.png';
 	} else {
-		$login_logo = plugins_url('logo-wordpress-login.png', __DIR__);
+		$login_logo = plugins_url('images/logo-wordpress-login.png', __DIR__);
 	}
 
     echo '<style type="text/css">
@@ -87,27 +87,45 @@ add_action('admin_head', 'add_favicon');
 
 
 function custom_post_css() {
+	$domain = get_site_url();
    echo "<style type='text/css' media='screen'>
    	
        #adminmenu .menu-icon-post div.wp-menu-image:before {
             font-family:  FontAwesome !important;
             content: '\\f044'; // this is where you enter the fontawesome font code
         }
-     </style>";
+        
+     </style>
+     
+     <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-24018806-28', 'auto', {'allowLinker': true});
+ga('require', 'linker');
+ga('linker:autoLink', ['".$domain."'] );
+ga('send', 'pageview');
+
+</script>
+     
+     ";
 }
 add_action('admin_head', 'custom_post_css');
 
 
 
 function load_fb_admin_style(){
-	echo '<style>span.websiteby{background: url("'.plugins_url("websiteby.png", __DIR__).'") no-repeat left center transparent;padding-left: 20px;height:20px;display:block;}</style>';
-}
+	echo '<style>span.websiteby{background: url("'.plugins_url("images/websiteby.png", __DIR__).'") no-repeat left center transparent;padding-left: 20px;display:block;}</style>';
+} 
 add_action('admin_head', 'load_fb_admin_style');
 
 // This just echoes the chosen line, we'll position it later
 function fb_admin_notice() {
-//	echo "<p class='fb_admin_notice' id='bug_report'><a href='http://support.fredbradley.co.uk/open.php' target='_blank'><span class='websiteby'>Bug Report</span></a></p>";
-	echo "<p class='fb_admin_notice' id='issue_tracker'><a href='https://bitbucket.org/fredbradley/student-radio-v3/issues' target='_blank'><i class='fa fa-2x fa-bitbucket'></i>Issue Tracker</a></p>";
+	echo "<div class='from-fred-button'><button class='button' role='button'><span class='websiteby'><a href='admin.php?page=from-fred'>Need Help?</a></span></button></div>";
+	$settings = get_option('fred_developer_options');
+	if ($settings['debug_mode'] === 'on') {
+		echo "<div class='from-fred-button'><button class='button' role='button'><a href='admin.php?page=fred_bradley_website_options_page'>DEBUG: ON</a></button></div>";	
+	}
 }
 
 // Now we set that function up to execute when the admin_notices action is called
@@ -120,6 +138,17 @@ function fb_admin_notice_css() {
 
 	echo "
 	<style type='text/css'>
+	.from-fred-button {
+		margin:10px;
+		float: right;
+	}
+	.from-fred-button a {
+		text-decoration:none;
+		color:#777;
+	}
+	.from-fred-button a:hover {
+		color:#333;
+	}
 	.fb_admin_notice {
 		float: $x;
 		padding-$x: 15px;

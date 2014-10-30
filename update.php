@@ -1,5 +1,5 @@
 <?php 
-// TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
+/* // TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
 // NOTE: The 
 //	if (empty($checked_data->checked))
 //		return $checked_data; 
@@ -15,7 +15,7 @@ function aaa_result($res, $action, $args) {
 }
 // NOTE: All variables and functions will need to be prefixed properly to allow multiple plugins to be updated
 
-
+*/
 
 $api_url = 'http://code.fredbradley.co.uk/wordpress-updates/';
 $plugin_slug = basename(dirname(__FILE__));

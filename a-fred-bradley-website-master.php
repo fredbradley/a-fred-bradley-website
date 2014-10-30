@@ -24,6 +24,34 @@ function socialcount_scripts_and_styles() {
 	echo "<style>.socialcount > li { background-color:#73c547;}</style>";
 }
 
+add_action('wp_head', 'add_this_script');
+function add_this_script() {
+	echo '<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-544abb3f5b9d9ed7"></script>';
+}
+
+
+function add_this_insert() {
+	echo '<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-544abb3f5b9d9ed7" async="async"></script>
+';
+echo '<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_sharing_toolbox"></div>';
+
+echo '<div class="sharrre">&nbsp;</div>';
+}
+
+
+// [bartag foo="foo-value"]
+function shortcode_example( $atts ) {
+    $a = shortcode_atts( array(
+        'foo' => 'something',
+        'bar' => 'something else',
+    ), $atts );
+
+    return "foo = {$a['foo']}";
+}
+add_shortcode( 'shortcode_name', 'shortcode_example' );
+
 
 function fb_helper_setup() {
 
@@ -78,7 +106,7 @@ function fredbradley_modify_menu() {
 			"Fred's Settings", 
 			"From Fred", 
 			"edit_posts", 
-			"fb-developer-settings", 
+			"from-fred", 
 			"fredbradley_admin_page",
 			plugins_url('/images/websiteby.png', __FILE__)
 		);
