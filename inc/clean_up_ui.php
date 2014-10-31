@@ -32,15 +32,45 @@ function remove_editor_menu() {
 }
 add_action('_admin_menu', 'remove_editor_menu', 1);
 
+
 function replace_howdy( $wp_admin_bar ) {
-    $my_account=$wp_admin_bar->get_node('my-account');
-    $newtitle = str_replace( 'Howdy,', 'Logged in:', $my_account->title );            
-    $wp_admin_bar->add_node( array(
-        'id' => 'my-account',
-        'title' => $newtitle,
-    ) );
+	$my_account = $wp_admin_bar->get_node('my-account');
+	$newtitle = str_replace( 'Howdy,', 'Logged in:', $my_account->title );            
+	$wp_admin_bar->add_node(
+		array(
+			'id' => 'my-account',
+			'title' => $newtitle,
+		)
+	);
 }
 add_filter( 'admin_bar_menu', 'replace_howdy',25 );
+
+function purge_debug_log() {
+	$file = ABSPATH."wp-content/debug.log";
+	echo "&nbsp; <a href=\"".admin_url('index.php?purge_debug=true')."\" class=\"button\">Purge Debug Log</a>";
+	if (isset($_GET['purge_debug'])):
+		shell_exec("cat /dev/null > ".$file);
+		echo "<div class=\"updated\"><p><strong>You're amazing!</strong><br /> The Debug Log has now been Purged! Eugh.. that's a sigh of relief!</p></div>";
+	endif;
+}
+
+function compile_sass() {
+	echo "<div class=\"header_buttons\"><p>";
+	if (isset($_GET['compile_scss'])):
+		$compile = shell_exec("compass compile ".get_stylesheet_directory());
+		if ($compile):
+			echo "<span class=\"button button-primary\"><i class=\"fa fa-check\"></i>Compiled!</span>";
+		else:
+			echo "<span class=\"button button-primary\"><i class=\"fa fa-compass\"></i>Nothing to compile.</span>";
+		endif;
+	else:
+		echo "<a class=\"button button-primary\" href=\"".admin_url('index.php?compile_scss=true')."\"><i class=\"fa fa-terminal\"></i>Compile CSS</a>";
+	endif;
+	echo purge_debug_log();
+	echo "</p></div>";
+}
+add_action('admin_notices', 'compile_sass', 100);
+
 
 function wps_admin_bar() {
     global $wp_admin_bar;
