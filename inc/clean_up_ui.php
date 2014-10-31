@@ -153,8 +153,10 @@ add_action('admin_head', 'load_fb_admin_style');
 function fb_admin_notice() {
 	echo "<div class='from-fred-button'><button class='button' role='button'><span class='websiteby'><a href='admin.php?page=from-fred'>Need Help?</a></span></button></div>";
 	$settings = get_option('fred_developer_options');
-	if ($settings['debug_mode'] === 'on') {
-		echo "<div class='from-fred-button'><button class='button' role='button'><a href='admin.php?page=fred_bradley_website_options_page'>DEBUG: ON</a></button></div>";	
+	if (WP_DEBUG == true) {
+		echo "<div class='from-fred-button'><button class='button' role='button'>DEBUG: ON</button></div>";	
+	} else {
+		echo "<div class='from-fred-button'><button class='button' role='button'>DEBUG: OFF</button></div>";			
 	}
 }
 

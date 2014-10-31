@@ -36,10 +36,7 @@ class WeDevs_Settings_API_Test {
 
     function get_settings_sections() {
         $sections = array(
-        	array(
-        		'id' => 'site_global_options',
-        		'title' => __("Site Options", "jack"),
-        	),
+        	
         	array(
         		'id' => 'fred_developer_options',
         		'title' => __("Developer Options", "fredbradley")
@@ -60,17 +57,7 @@ class WeDevs_Settings_API_Test {
         );
         return $sections;
     }
-	function do_social_fields($input) {
-		$name = "jack_".strtolower($input);
-		$label = $input." URL";
-		$type = 'text';
-		
-		return array(
-			'name' => $name,
-			'label' => $label,
-			'type' => $type
-		);
-	}
+	
     /**
      * Returns all the settings fields
      *
@@ -85,27 +72,7 @@ class WeDevs_Settings_API_Test {
         			'type' => 'checkbox'
         		)
         	),
-        	'site_global_options' => array(
-        		array(
-                    'name' => 'site_logo',
-                    'label' => __( 'Site Logo', 'wedevs' ),
-                    'desc' => __( '', 'wedevs' ),
-                    'type' => 'file',
-                    'default' => ''
-                ),
-                array(
-                	'name' => 'interview_photos', 
-                	'label' => __('Interview Photo IDs', 'fred'),
-                	'desc' => "Find the ID of the photo and make a comment separated list here",
-                	'type' => 'text'
-                ),
-                $this->do_social_fields("Facebook"),
-                $this->do_social_fields("Twitter"),
-                $this->do_social_fields("Instagram"),
-                $this->do_social_fields("Soundcloud"),
-                $this->do_social_fields("LinkedIn"),
-                $this->do_social_fields("GooglePlus")
-        	),
+        	
           /*  'wedevs_basics' => array(
                 array(
                     'name' => 'text_val',
