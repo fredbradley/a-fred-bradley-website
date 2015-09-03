@@ -1,12 +1,14 @@
 <?php
 /*
-Plugin Name: Website By Fred Bradley
+Plugin Name: A Fred Bradley Website
 Plugin URI: https://github.com/fredbradley/a-fred-bradley-website
 Description: Comes with every Fred Bradley Wordpress Installation.  
-Version: 1.1.1
+Version: 1.1.2
 Author: Fred Bradley
 Author URI: http://www.fredbradley.co.uk/
 License: MIT
+GitHub Plugin URI: https://github.com/fredbradley/a-fred-bradley-website
+GitHub Branch: master
 Copyright: Fred Bradley
 */
 
