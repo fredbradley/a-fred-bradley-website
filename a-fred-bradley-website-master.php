@@ -3,7 +3,7 @@
 Plugin Name: A Fred Bradley Website
 Plugin URI: https://github.com/fredbradley/a-fred-bradley-website
 Description: Comes with every Fred Bradley Wordpress Installation.  
-Version: 1.1.2
+Version: 1.1.3
 Author: Fred Bradley
 Author URI: http://www.fredbradley.co.uk/
 License: MIT
@@ -14,7 +14,7 @@ Copyright: Fred Bradley
 
 require_once dirname( __FILE__ ) . '/required_plugins/required_plugins.php';
 require_once dirname(__FILE__) . '/classes/class.fred.options.php';
-require_once dirname(__FILE__) . '/update.php';
+//require_once dirname(__FILE__) . '/update.php';
 
 add_action( 'wp_head', 'socialcount_scripts_and_styles' );
 function socialcount_scripts_and_styles() {
